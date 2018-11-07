@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Comment=Launch an ssh session to node02
+Exec=xfce4-terminal --geometry=+160-1 -e 'bash -c "ssh node02 || sleep 5"'
+Icon=virt-viewer
+Terminal=false
+StartupNotify=false
+Name[en_US.UTF-8]=6. ssh to Node 02

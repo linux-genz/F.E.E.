@@ -1,0 +1,11 @@
+*.exe
+*.pyc
+*.swp
+
+*.mk
+*.o.*
+
+junk*
+nohup.out
+
+__pycache__

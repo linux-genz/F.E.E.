@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Comment=Point Chrome at the monitor GUI
+Exec=chromium --no-proxy-server http://127.0.0.1:8080/
+Icon=display-im6.q16
+Path=
+Terminal=false
+StartupNotify=false
+Name[en_US.UTF-8]=2. Executive Cardboard

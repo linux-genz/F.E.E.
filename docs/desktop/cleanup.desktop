@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Comment=Minor cleanup, stop everything first
+Exec=/bin/bash -c "killall ivshmsg_client.py; killall ivshmsg_server.py; rm -f /tmp/ivshmsg_socket"
+Icon=user-trash
+Terminal=true
+StartupNotify=false
+Name[en_US.UTF-8]=99. Cleanup

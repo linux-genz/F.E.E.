@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Comment=Launch in a termulator. DO ME FIRST!
+Exec=xfce4-terminal --geometry=90x28-1+1 -e 'bash -c "$HOME/github/F.E.E./ivshmsg_server.py || sleep 5"'
+Icon=network-transmit-receive-symbolic
+Terminal=false
+StartupNotify=false
+Name[en_US.UTF-8]=1. Gen-Z Fabric Switch
