@@ -412,7 +412,7 @@ class ProtocolIVSHMSGServer(TIPProtocol):
         lfmt = '%s %s [%s,%s]'
         rfmt = '[%s,%s] %s %s'
         half = (MB.MAILBOX_MAX_SLOTS - 1) // 2
-        NSP = 32
+        NSP = 34
         lspaces = ' ' * NSP
         PRINT('\n%s  ____ ____' % lspaces)
         notch = 'U'
