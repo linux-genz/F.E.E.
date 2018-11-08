@@ -44,7 +44,7 @@ class MailBoxReSTAPI(object):
         for ivshmsg_id in range(1, cls.nEvents):
             this = cls.nodes[ivshmsg_id]
             this.ivshmsg_id = ivshmsg_id
-            this.id = cls.mb.slots[ivsmsg_id].nodename
+            this.id = cls.mb.slots[ivshmsg_id].nodename
             this.cclass = cls.mb.slots[ivshmsg_id].cclass
             this.hardware = cls.cclass_to_hardware_type(this.cclass)
 
