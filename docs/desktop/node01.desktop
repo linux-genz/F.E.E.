@@ -6,4 +6,4 @@ Exec=xfce4-terminal --geometry=+160+1 -e 'bash -c "ssh node01 || sleep 5"'
 Icon=virt-viewer
 Terminal=false
 StartupNotify=false
-Name[en_US.UTF-8]=5. ssh to Node 01
+Name=5. ssh to Node 01

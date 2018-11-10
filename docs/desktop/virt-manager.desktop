@@ -1,5 +1,4 @@
 [Desktop Entry]
-Name=Virtual Machine Manager
 Name[as]=ভাৰ্চুৱেল ডিভাইচ ব্যৱস্থাপক
 Name[bg]=Мениджър на виртуални машини
 Name[bn_IN]=ভার্চুয়াল মেশিন ম্যানেজার
@@ -47,5 +46,5 @@ Exec=virt-manager
 Type=Application
 Terminal=false
 Categories=System;
-Name[en_US.UTF-8]=4. VM Manager
+Name=4. VM Manager
 StartupNotify=false

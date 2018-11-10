@@ -6,4 +6,4 @@ Exec=xfce4-terminal --geometry=90x22-1-1 -e 'bash -c "$HOME/github/F.E.E./ivshms
 Icon=utilities-system-monitor
 Terminal=true
 StartupNotify=false
-Name[en_US.UTF-8]=3. Gen-Z Fabric Debugger
+Name=3. Gen-Z Fabric Debugger

@@ -6,4 +6,5 @@ Exec=/bin/bash -c "killall ivshmsg_client.py; killall ivshmsg_server.py; rm -f /
 Icon=user-trash
 Terminal=true
 StartupNotify=false
-Name[en_US.UTF-8]=99. Cleanup
+Name=99. Cleanup
+Path=
