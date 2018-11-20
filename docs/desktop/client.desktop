@@ -2,8 +2,9 @@
 Version=1.0
 Type=Application
 Comment=
-Exec=xfce4-terminal --geometry=90x22-1-1 -e 'bash -c "$HOME/github/F.E.E./ivshmsg_client.py || sleep 5"'
+Exec=xfce4-terminal --geometry=90x18-1-1 -e 'bash -c "$HOME/github/F.E.E./ivshmsg_client.py --socket $HOME/FAME/node_socket || sleep 5"'
 Icon=utilities-system-monitor
 Terminal=true
 StartupNotify=false
 Name=3. Gen-Z Fabric Debugger
+Path=

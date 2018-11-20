@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=WS Cycle
+Comment=Unattended station
+Exec=/bin/bash -c "$HOME/Documents/wscycle"
+Icon=
+Path=
+Terminal=false
+StartupNotify=false

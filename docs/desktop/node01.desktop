@@ -2,8 +2,9 @@
 Version=1.0
 Type=Application
 Comment=Launch an ssh session to node01
-Exec=xfce4-terminal --geometry=+160+1 -e 'bash -c "ssh node01 || sleep 5"'
+Exec=xfce4-terminal --geometry=+130+1 -e 'bash -c "ssh node01 || sleep 5"'
 Icon=virt-viewer
 Terminal=false
 StartupNotify=false
 Name=5. ssh to Node 01
+Path=
