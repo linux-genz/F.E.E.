@@ -1,0 +1,28 @@
+#!/bin/bash
+
+# Cycle through workspaces, assumes they are laid in in 1x4 (horizontal) grid.
+
+which xdotool
+[ $? -ne 0 ] && echo "Install xdotool" >&2 && exit 1
+
+TO=${1:-10}	# seconds
+
+set -u
+
+[ $TO -lt 5 -o $TO -gt 30 ] && TO=10
+
+export PROG=`basename $0`
+N=`pgrep --count $PROG`
+echo $N to kill
+if [ $N -gt 1 ]; then
+	nohup zenity --info --title 'Done' --text "Killing $N" &
+	while pkill --oldest $PROG; do sleep 1 ; done
+	exit 0
+fi
+
+while true; do
+	xdotool key ctrl+alt+Right
+	sleep $TO
+done
+
+exit 0
