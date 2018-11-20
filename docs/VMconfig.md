@@ -2,7 +2,7 @@ THIS INFO IS INCOMPLETE BUT WILL BE UPDATED IN EARLY NOVEMBER
 
 ## Create QEMU VM(s) for Linux guest OS
 
-These is offered as a suggestion, not an officially supported directive.  YMMV
+These are offered as suggestion, not officially supported directives.  YMMV
 so please create an issue if you have problems or a better answer.
 All three methods assume proper installation of QEMU, libvirtd, and other
 tools and utilities.

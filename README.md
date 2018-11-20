@@ -52,15 +52,15 @@ If the guest OS driver emulates a simple Gen-Z bridge, a great deal of
 "pure Gen-Z" software development can be done on this simple platform.
 Certain Gen-Z primitive operations for discovery and crawlout
 would also be abetted by intelligence "in the fabric".  In fact, that 
-intelligence could live in the ivshmem-server process, and it could be 
-extended to participate in actual.
+intelligence could live in the ivshmem-server process if it were
+extended to participate in actual messaging.
 
 Modifying the existing ```ivshmem-server`` C program is not a simple challenge.
 Written within the QEMU build framework, it is not standalone source code.
 C is a also limited for higher-level data constructs anticipated for a Gen-Z
 emulation.  Finally, it seems unlikely such changes would be accepted upstream.
 
-This project is a rewrite of ivshmem-server in Python using Twisted
+F.E.E. is a rewrite of ivshmem-server in Python using Twisted
 as the network-handling framework.  ```ivshmsg_server.py``` is run in place of
 ```ivshmem-server```.  It correctly serves real QEMU processes as well as
 the stock QEMU ``ivshmem-client``, a test program that comes with QEMU.
@@ -69,9 +69,11 @@ the stock QEMU ``ivshmem-client``, a test program that comes with QEMU.
 
 [EMERGEN-Z]: https://github.com/linux-genz/F.E.E./blob/master/docs/images/FEE%20block.png "Figure 2"
 
-A new feature for the Python version is participation 
+A new feature for the Python version is server participation 
 in the doorbell/mailbox messaging to serve as fabric intelligence
 (ie, a smart switch).
+
+___
 
 ## Running the Python rewrites
 
@@ -82,27 +84,81 @@ time its use as a monitor/debugger/injector will certainly grow.
 
 To use these programs as a simple chat framework you don't even need QEMU.
 
+### ivshmsg_server.py
 1. Clone this repo
 1. Install python3 packages ```twisted``` and ```klein``` (names will vary by distro)
-1. In one terminal window run './ivshmsg_server.py'.  By default it creates /tmp/ivshmsg_socket to which up to clients attach, and /dev/shm/ivshmsg_mailbox which is shared among all clients for messaging.
-1. In a second (or more) terminal window(s) run 'ivshmsg_client.py'.  You'll see them get added in the server window.
+1. In one terminal window run './ivshmsg_server.py'.
+1. Type "help" and hit return.
+
+By default it creates /tmp/ivshmsg_socket to which up to clients attach,
+and /dev/shm/ivshmsg_mailbox which is shared among all clients for messaging.
+The window expresses an interactive interface, the command set is quite simple
+at the moment.  Try "dump".  This will get you a visual representation of a
+14-port switch.  The port number is the raw messaging source/destination
+of attached clients.  The soft-switch itself is ID 15; there is no ID 0.
+
+In general, ivshmsg_server.py could be used for many more messaging 
+protocols beyond Gen-Z.   However, it currently has a "personality"
+that interprets some of the Link level messages at a semantic level.
+That's best seen with a debugger client.
+
+### ivshmsg_client.py
+
+1. In a second (or more) terminal window(s) run 'ivshmsg_client.py'.  
+
+You'll see them get added in the server window if default values were used 
+in the server invocation.  Each client is assigned a random "port".
+
 1. In one of the clients, hit return, then type "help".  Play with sending messages to the other client(s) or the server.
 
-## Connecting VMs
+Hit "d" or "dump" to see local information.
 
-That's another story [which is going to be told here.](docs/VMconfig.md)
+Try "ping", as in "ping NN" or "ping <name>"
 
-You are advised to get the Python programs playing together before taking
-these steps.
+"Send" is the next message, and now we have an overly complicated chatroom.
 
-## BUGS
+Try "Link" or "Link Peer-Attributes"
+
+Finally try "RFC", followed by "dump".   It should look different :-)
+
+## Generating and connecting VMs
+
+When you get the Python programs playing together (above), you'll be ready
+for another story [which is going to be told here.](docs/VMconfig.md)
+
+Once you have VMs configured and connected as "Driverless QEMU" actors,
+[proceed to the prototype Gen-Z subsystem repo](http://github.com/linux-genz/EmerGen-Z/).
+
+___
+
+## Bugs and Performance
 
 As the QEMU docs say, "(IVSHMSG) is simple and fragile" and sometimes
-* A QEMU session will hang
-* A QEMU session will die
-* All QEMUs need a restart
-* (Rarely) you have to restart ivshmsg_server.py
-* The way I crafted an interlock protocol in the guest kernel drivers can cause a VM to go into RCU stall which usually leads to a virtual panic.
+* A QEMU session will lose connection with the server, hang, die, or otherwise need a restart.
+* There's a pseudo-hardware holdoff/interlock timeout in the guest kernel drivers which can cause a VM core to go into RCU stall which usually leads to a virtual panic.
+* RARELY do you have to restart ivshmsg_server.py, but if you have to restart the QEMUs anyhow, it never hurts.
+* Debugging under Python Twisted will make you go blind.
 
-In spite of all that, it's been stable enough to generate a prototype Gen-Z
-subsystem for the kernel.  [Read all about that at this repo](http://github.com/linux-genz/EmerGen-Z/).
+Most of these problems only show up in a stripped-down, dedicated speed run.
+On "average" hardware the setup can reach 20k messages/second between
+two VMs (100-bytes messages, or 2Mb/sec) sustained over minutes of time.  
+
+Data rates are typically MUCH smaller when doing the type of programming
+for which F.E.E. is reall intended (bridge-based inter-actor fabric 
+management).  It's been stable enough to promote generation of a
+prototype Gen-Z subsystem for the kernel.  
+
+[Read all about that at this repo](http://github.com/linux-genz/EmerGen-Z/).
+
+## Backlog
+
+A few things the primary author has thought about or heard...
+
+* A severe documentation review and refresh would help drive adoption.
+* Extract the Gen-Z "personality" into a more modular plugin basis for re-use of F.E.E. for other fabrics.
+* Move to shared code as the interactive command engine (or at least coalesce it more) as part of those extracted personalities.
+* More intelligence in the switch
+  * Particularly around fabric management
+  * "True bridging", right now the clients cheat and talk directly to each other
+  * Error injection
+* More switches
