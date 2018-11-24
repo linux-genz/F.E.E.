@@ -40,11 +40,4 @@ make modules_install
 
 # load the EmerGen-Z drivers (and watch the Gen-Z state in ivshmsg_server.py)
 sudo modprobe genz verbose=2
-sudo modprobe genz_fee verbose=2
 sudo modprobe genz_fee_bridge verbose=2
-
-# unload the driver (and watch the Gen-Z state in ivshmsg_server.py)
-# sudo rmmod genz_fee_bridge
-# sudo rmmod genz_fee
-# sudo rmmod genz
-

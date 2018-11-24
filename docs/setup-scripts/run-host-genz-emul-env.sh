@@ -38,9 +38,9 @@ fi
 
 # setup the SSH keys (that FAME used in VM's) on this host system (if they are not setup)
 if [ ! -f .ssh/config ]; then
- cp github/Emulation/templates/id_rsa.nophrase* .ssh
- chmod 600 .ssh/*rsa*
- cat > .ssh/config << EOF
+ cp $HOME/github/Emulation/templates/id_rsa.nophrase* $HOME/.ssh
+ chmod 600 $HOME/.ssh/*rsa*
+ cat > $HOME/.ssh/config << EOF
 ConnectTimeout 5
 StrictHostKeyChecking No
 AddKeysToAgent yes
@@ -49,7 +49,7 @@ Host node*
 	User l4mdc
 	IdentityFile ~/.ssh/id_rsa.nophrase
 EOF
- rm -f .ssh/known_hosts
+ rm -f $HOME/.ssh/known_hosts
 fi
 
 # start ivshmsg_server.py in another terminal window
@@ -58,7 +58,7 @@ fi
 gnome-terminal -e 'bash -c "$HOME/github/F.E.E./ivshmsg_server.py --socket $HOME/FAME/node_socket || sleep 5"'
 
 # let the ivshmsg_server.py get running so that it is listening for network connections
-sleep 15
+sleep 10
 
 # start ivshmsg_client.py in another terminal window
 # directly stolen from: https://github.com/linux-genz/F.E.E./blob/master/docs/desktop/client.desktop
@@ -70,12 +70,14 @@ sudo virsh start node01
 sudo virsh start node02
 
 # let the VM's start running before trying to ssh to them
-sleep 60
+sleep 30
 
 # setup the EmerGen-Z environment in each of VM's
 # for more info see https://github.com/linux-genz/F.E.E./blob/master/docs/VMconfig.md#running-linux-guests-with-ivshmsg-kernel-modules
-gnome-terminal -e 'bash -c "scp $HOME/github/F.E.E./docs/setup-scripts/setup-guest-genz-emul-env.sh node01:. && ssh node01 ./setup-guest-genz-emul-env.sh"'
-gnome-terminal -e 'bash -c "scp $HOME/github/F.E.E./docs/setup-scripts/setup-guest-genz-emul-env.sh node02:. && ssh node02 ./setup-guest-genz-emul-env.sh"'
+scp $HOME/github/F.E.E./docs/setup-scripts/setup-guest-genz-emul-env.sh node01:.
+scp $HOME/github/F.E.E./docs/setup-scripts/setup-guest-genz-emul-env.sh node02:.
+ssh node01 ./setup-guest-genz-emul-env.sh
+ssh node02 ./setup-guest-genz-emul-env.sh
 
 # setup interactive ssh sessions to the VM's
 gnome-terminal -e 'bash -c "ssh node01 || sleep 5"'
