@@ -20,7 +20,7 @@
 # 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 
 # setup the virtual machines that were created by the FAME tool in virsh/libvirt/etc
-# NOTE: You must belong to group libvirt-qemu (see reboot at end of setup-genz-emul-env.sh script)
+# NOTE: You must belong to group libvirt-qemu (see logout at end of setup-genz-emul-env.sh script)
 cd
 cd FAME
 
