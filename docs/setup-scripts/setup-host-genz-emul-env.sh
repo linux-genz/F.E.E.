@@ -7,6 +7,7 @@
 # run this script first, then run-host-genz-emul-env.sh (which uses setup-guest-genz-emul-env.sh)
 
 # Copyright 2018 Hewlett Packard Enterprise Development LP
+# Author: Bill Hayes <first.last@hpe.com>
 
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License, version 2  as
