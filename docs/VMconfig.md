@@ -1,5 +1,3 @@
-THIS INFO IS INCOMPLETE BUT WILL BE UPDATED IN EARLY NOVEMBER
-
 ## Create QEMU VM(s) for Linux guest OS
 
 These are offered as suggestion, not officially supported directives.  YMMV
@@ -27,7 +25,11 @@ or add this to a libvirt domain XML file, at the end:
 ```
 
 The security configuration of some distros will not allow QEMU to open a
-socket in /tmp.  "path" may need to be changed.
+socket in /tmp.  "path" may need to be changed.  You may also need to extend the very first line of the XML to specify a namespace needed to accept the command-line directives:
+
+```
+<domain type='kvm' xmlns:qemu='http://libvirt.org/schemas/domain/qemu/1.0'>
+```
 
 ### Method 2: qemu-img and virt-install
 
@@ -45,6 +47,7 @@ following stanzas were replaced:
     --extra-args 'console=ttyS0,115200n8 serial'
 
 1. qemu-img create -f qcow2 ./TARGET.qcow2 4G
+1. If you want to use a different virtual network than "default", create and activate it now.  Then specify it in the virt-install command.
 1. virt-install --name &lt;VMNAME&gt; --virt-type kvm --vcpus 1 --ram 1024 \
 	--disk path=./TARGET.qcow2 \
 	--network network=default \
@@ -53,7 +56,9 @@ following stanzas were replaced:
 	--location &lt;DISTRO-DEPENDENT&gt;
 
     Debian: --location
-http://ftp.us.debian.org/debian/dists/stable/main/installer-amd64/
+http://ftp.us.debian.org/debian/dists/testing/main/installer-amd64/
+
+"testing" is used (rather than "stretch" or "stable") to get a kernel recent enough for the EmerGen-Z build.
 
     Ubuntu Bionic: --location
 http://us.archive.ubuntu.com/ubuntu/dists/bionic/main/installer-amd64/
