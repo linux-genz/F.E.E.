@@ -144,8 +144,8 @@ On "average" hardware the setup can reach 20k messages/second between
 two VMs (100-bytes messages, or 2Mb/sec) sustained over minutes of time.  
 
 Data rates are typically MUCH smaller when doing the type of programming
-for which F.E.E. is reall intended (bridge-based inter-actor fabric 
-management).  It's been stable enough to promote generation of a
+for which F.E.E. is really intended: bridge-based inter-actor fabric 
+management.  It's been stable enough to promote generation of a
 prototype Gen-Z subsystem for the kernel.  
 
 [Read all about that at this repo](http://github.com/linux-genz/EmerGen-Z/).
