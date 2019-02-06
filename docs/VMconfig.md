@@ -98,6 +98,16 @@ guest OS.  The Librarian can find it from there.
 Review the $FAME_DIR/${FAME_HOSTBASE}_env.sh to see the pathname chosen
 for the Unix domain socket.
 
+## Useful packages to install
+Most (all?) of these packages get installed by FAME.  This list is for
+those making VMs by another method.
+
+* build-essential
+* git
+* haveged (eliminates the sshd startup delay from insufficient entropy)
+* linux-headers-4.xx
+* sudo
+
 ## Running Linux guests with IVSHMSG kernel modules
 
 While a QEMU process makes the network connection to ivshmsg_server.py, it's
