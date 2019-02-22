@@ -55,16 +55,13 @@ following stanzas were replaced:
 	--os-type linux --os-variant auto \
 	--location &lt;DISTRO-DEPENDENT&gt;
 
-    Debian: --location
-http://ftp.us.debian.org/debian/dists/testing/main/installer-amd64/
+   Debian: --location http://ftp.us.debian.org/debian/dists/testing/main/installer-amd64/
 
 "testing" is used (rather than "stretch" or "stable") to get a kernel recent enough for the EmerGen-Z build.
 
-    Ubuntu Bionic: --location
-http://us.archive.ubuntu.com/ubuntu/dists/bionic/main/installer-amd64/
+   Ubuntu Bionic: --location http://us.archive.ubuntu.com/ubuntu/dists/bionic/main/installer-amd64/
 
-    CentOS: --location
-http://www.gtlib.gatech.edu/pub/centos/7/os/x86_64/
+   CentOS: --location http://www.gtlib.gatech.edu/pub/centos/7/os/x86_64/
 
 1. Alter the VM invocation as explained in "Method 1"
 
