@@ -57,7 +57,7 @@ following stanzas were replaced:
 
    Debian: --location http://ftp.us.debian.org/debian/dists/testing/main/installer-amd64/
 
-"testing" is used (rather than "stretch" or "stable") to get a kernel recent enough for the EmerGen-Z build.
+   "testing" is used to get a kernel recent enough for the EmerGen-Z build (must be 4.13 or later, "stretch" is just 4.9).
 
    Ubuntu Bionic: --location http://us.archive.ubuntu.com/ubuntu/dists/bionic/main/installer-amd64/
 
